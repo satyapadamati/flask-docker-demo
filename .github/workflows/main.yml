@@ -31,7 +31,7 @@ jobs:
 
       # Step 4: Deploy to EC2
       - name: Deploy to EC2
-        uses: appleboy/ssh-action@v0.1.13  # Use a known working version
+        uses: appleboy/ssh-action@v0.1.21  # Use a newer version that works
         with:
           host: ${{ secrets.EC2_IP }}
           username: ${{ secrets.EC2_USER }}
