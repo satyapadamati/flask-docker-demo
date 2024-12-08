@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+<body>
+    <h1>User Management</h1>
+    <form method="POST" action="/create">
+        <h2>Add New User</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+        <button type="submit">Add User</button>
+    </form>
+
+    <h2>Users</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.age }}</td>
+                <td>
+                    <form method="POST" action="/delete/{{ user.id }}" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                    <form method="POST" action="/update/{{ user.id }}" style="display:inline;">
+                        <input type="text" name="name" placeholder="Name" value="{{ user.name }}" required>
+                        <input type="email" name="email" placeholder="Email" value="{{ user.email }}" required>
+                        <input type="number" name="age" placeholder="Age" value="{{ user.age }}" required>
+                        <button type="submit">Update</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
