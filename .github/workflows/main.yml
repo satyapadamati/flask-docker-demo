@@ -21,7 +21,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # Step 3: Build and Push the Docker Image
+      # Step 3: Build and push Docker image
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
@@ -31,7 +31,7 @@ jobs:
 
       # Step 4: Deploy to EC2
       - name: Deploy to EC2
-        uses: appleboy/ssh-action@v0.1.16
+        uses: appleboy/ssh-action@v0.1.13  # Use a known working version
         with:
           host: ${{ secrets.EC2_IP }}
           username: ${{ secrets.EC2_USER }}
